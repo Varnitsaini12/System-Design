@@ -39,3 +39,12 @@ def create_message(msg: schemas.MessageCreate, db: Session = Depends(get_db)):
 @app.get("/messages", response_model=List[schemas.Message], tags=["Message"])
 def get_all_messages(db: Session = Depends(get_db)):
     return service.list_messages_service(db)
+
+@app.get("/messages/paginated")
+def list_messages_paginated(
+    skip: int = 0,
+    limit: int = 20,
+    db: Session = Depends(get_db)
+):
+    return service.list_messages_paginated_service(db, skip, limit)
+

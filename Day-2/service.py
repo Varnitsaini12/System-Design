@@ -36,3 +36,7 @@ def list_messages_service(db: Session):
     cache.set_cache("messages_all", result_dict)
 
     return result_dict
+
+
+def list_messages_paginated_service(db: Session, skip: int = 0, limit: int = 20):
+    return repository.list_messages_paginated(db, skip, limit)

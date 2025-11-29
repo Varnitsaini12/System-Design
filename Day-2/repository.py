@@ -10,3 +10,12 @@ def create_message(db: Session, msg: schemas.MessageCreate):
 
 def list_messages(db: Session):
     return db.query(models.Message).all()
+
+def list_messages_paginated(db: Session, skip: int = 0, limit: int = 20):
+    return (
+        db.query(models.Message)
+        .order_by(models.Message.id.desc())
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
