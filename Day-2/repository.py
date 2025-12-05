@@ -19,3 +19,10 @@ def list_messages_paginated(db: Session, skip: int = 0, limit: int = 20):
         .limit(limit)
         .all()
     )
+
+def search_messages(db: Session, query: str):
+    return db.query(models.Message)\
+        .filter(models.Message.text.contains(query))\
+        .order_by(models.Message.id.desc())\
+        .all()
+        

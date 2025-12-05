@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from database import Base, engine, SessionLocal
 import schemas, service
 from typing import List
+import repository
 
 Base.metadata.create_all(bind=engine)
 
@@ -47,4 +48,8 @@ def list_messages_paginated(
     db: Session = Depends(get_db)
 ):
     return service.list_messages_paginated_service(db, skip, limit)
+
+@app.get("/messages/search")
+def search_messages(q: str, db: Session = Depends(get_db)):
+    return repository.search_messages(db,q)
 

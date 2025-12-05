@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Index
 from datetime import datetime
 from database import Base
 
@@ -10,3 +10,5 @@ class Message(Base):
     text = Column(String, nullable=False)
     
     created_at = Column(DateTime, default=datetime.utcnow())
+
+Index("idx_messages_created_at", Message.created_at)
