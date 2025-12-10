@@ -1,4 +1,4 @@
-# Day 9 - Quickstart
+
 
 
 # 1) Start dependencies with Docker (MySQL + Redis)
